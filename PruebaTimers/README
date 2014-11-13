@@ -1,0 +1,13 @@
+Se hace la prueba con Timers para hacer parpadear un led.
+
+Archivos:
+
+	- Led.cpp: Representa al led del atmega328p.
+	- timer.cpp: (en el futuro debería representar los Timers).
+	- pruebaTimer: Usa las interrupciones del timer para cambiar el estado del led.
+	- Makefile: compila y sube el contenido al arduino atmega328p.
+
+Modo de uso:
+	make: Compila y enlaza.
+	
+	make upload: sube el contenido al arduino. Observar que se requieren permisos del uso del puerto /dev/ttyACM0 y en caso que arduino use otro puerto en su máquina debe cambiarlo en el Makefile, en la regla "upload: " debe cambiarlo por el suyo y además debe darle los permisos al puerto ó ejecutarlo como superusuario.  

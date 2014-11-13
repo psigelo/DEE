@@ -1,0 +1,31 @@
+FUENTE: http://balau82.wordpress.com/2011/03/29/programming-arduino-uno-in-pure-c/
+
+Un pequeño instructivo de cómo compilar y cargar programas C/C++ en el atmega328p a través de arduino.
+
+Se explicará un bosquejo usando el archivo de muestra led.c, el cual hace parpadear el lead del arduino cada 1 segundo.
+
+
+1) Se debe tener instalado el compilador avr-gcc, particularmente en linux mint se puede instalar con:
+
+	> sudo apt-get install adrduino-mk
+
+2) Se debe compilar el código C/C++, en este caso se compilará en C:
+
+	2.1)  primero se crea el objeto:
+	
+		> avr-gcc -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o led.o led.c
+
+	2.2) Luego se crea el binario:
+
+		> avr-gcc -mmcu=atmega328p led.o -o led
+
+	2.3) Por ultimo se crea el hexadecimal:
+
+		> avr-objcopy -O ihex -R .eeprom led led.hex 
+
+3) Se debe subir el hexadecimal a la memoria flash del atmega328 a través del arduino:
+
+	> avrdude -V -c arduino -p ATMEGA328P -P /dev/ttyACM0 -b 115200 -U flash:w:led.hex
+
+	Nota: avrdude se instala al instalar arduino, en linux mint:
+		> sudo apt-get install arduino
