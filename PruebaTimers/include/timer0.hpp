@@ -11,6 +11,7 @@ class Timer0{
 		int modeCTC(); // return 0 on success and -1 on error
 		void setOCR0A(uint8_t oc0a);
 		void InterruptOnOCF0A();
+		void InterruptOnOCF0B();
 		int setPreescaler(uint16_t preescaler);
 		void setFastPWMModeNonInverted();
 };

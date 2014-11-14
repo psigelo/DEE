@@ -169,6 +169,13 @@ void Timer0::InterruptOnOCF0A(){
 }
 
 
+void Timer0::InterruptOnOCF0B(){
+	cli();
+	// OCF0B es un bit que se hace uno al alcanzar el TCNT0 al valor OCR0B
+	TIMSK0 |=  _BV(OCIE0B);
+	sei();
+}
+
 /*	
 
 	Recordar:
@@ -297,8 +304,9 @@ registro TCCR0B:
 */
 void Timer0::setFastPWMModeNonInverted(){
 	TCCR0A |=  _BV(WGM01) | _BV(WGM00) | _BV(COM0A1); 
-	TCCR0B !=  /* _BV(WGM02) */;
+	TCCR0B !=  _BV(WGM02) ;
 	DDRD |= _BV(DDD6);
-	//PORTD |= _BV(PORTD6);
+	DDRD |= _BV(DDD5);
+	//PORTD |= _BV(PORTD5);
 
 }

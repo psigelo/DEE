@@ -19,9 +19,10 @@ int main(){
     */
 
     Timer0 timer0;
-    timer0.setOCR0A((uint8_t)100);
+    timer0.setOCR0A((uint8_t)200);
     timer0.setPreescaler((uint16_t)8);
     timer0.setFastPWMModeNonInverted();
+    timer0.InterruptOnOCF0B();
 
 
     while(1){
@@ -29,6 +30,9 @@ int main(){
         SMCR = _BV(SM1) | _BV(SM0) | _BV(SE);
         // Luego de la interrupcion se vuelve a la rutina normal, se debe volver a hacer el loop
     }
+    
+
+    cli();
     
 }
 
